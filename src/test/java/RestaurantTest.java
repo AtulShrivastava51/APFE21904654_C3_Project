@@ -16,13 +16,19 @@ class RestaurantTest {
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
         //WRITE UNIT TEST CASE HERE
-
+        Date date= new Date();
+        LocalTime currentTime= date.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+        restaurant = new Restaurant("abc","bangalore",currentTime.minusHours(1),currentTime.plusHours(1));
+        assertTrue(()->restaurant.isRestaurantOpen());
     }
 
     @Test
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time(){
         //WRITE UNIT TEST CASE HERE
-
+        Date date= new Date();
+        LocalTime currentTime= date.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+        restaurant = new Restaurant("abc","bangalore",currentTime.plusHours(3),currentTime.plusHours(5));
+        assertFalse(()->restaurant.isRestaurantOpen());
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
